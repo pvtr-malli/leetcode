@@ -53,3 +53,10 @@ Day 8(10/10/2020)  String/Easy <br/>
 
 &emsp;&emsp;&emsp;   Problem &emsp;&emsp;&emsp;&emsp; - [longest Palindrom](https://github.com/pavi-ninjaac/leetcode/blob/master/String/Easy/longestPalindrom.py) <br/>
 &emsp;&emsp;&emsp;   Time to solve &emsp;&emsp; - 10mins <br/>
+
+Day 9(11/10/2020)  String/Medium <br/>
+&emsp;&emsp;&emsp;   Problem &emsp;&emsp;&emsp;&emsp; - [Longest Substring](https://github.com/pavi-ninjaac/leetcode/blob/master/String/Medium/longestSubstring.py) <br/>
+&emsp;&emsp;&emsp;   Time to solve &emsp;&emsp; - 25mins <br/>
+Day 9(11/10/2020)  Array/Easy <br/>
+&emsp;&emsp;&emsp;   Problem &emsp;&emsp;&emsp;&emsp; - [Two Sum](https://github.com/pavi-ninjaac/leetcode/blob/master/Array/Easy/TwoSum.py) <br/>
+&emsp;&emsp;&emsp;   Time to solve &emsp;&emsp; - 15mins <br/>
