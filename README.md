@@ -46,3 +46,10 @@ Day 7(7/10/2020)  String/Easy
 
 &emsp;&emsp;&emsp;   Problem &emsp;&emsp;&emsp;&emsp; - [balance string group](https://github.com/pavi-ninjaac/leetcode/blob/master/String/Easy/Split_string_balaced_By_LR.py) <br/>
 &emsp;&emsp;&emsp;   Time to solve &emsp;&emsp; - 20mins <br/>
+
+Day 8(10/10/2020)  String/Easy <br/>
+&emsp;&emsp;&emsp;   Problem &emsp;&emsp;&emsp;&emsp; - [Firsr Unique charecter](https://github.com/pavi-ninjaac/leetcode/blob/master/String/Easy/firstUniqueString.py) <br/>
+&emsp;&emsp;&emsp;   Time to solve &emsp;&emsp; - 10mins <br/>
+
+&emsp;&emsp;&emsp;   Problem &emsp;&emsp;&emsp;&emsp; - [longest Palindrom](https://github.com/pavi-ninjaac/leetcode/blob/master/String/Easy/longestPalindrom.py) <br/>
+&emsp;&emsp;&emsp;   Time to solve &emsp;&emsp; - 10mins <br/>
