@@ -38,7 +38,7 @@ Day 5 (4/10/2020)
 
 Day 6(5/10/2020)
 &emsp;&emsp;&emsp;   Problem &emsp;&emsp;&emsp;&emsp; - [Trapping water](https://github.com/pavi-ninjaac/leetcode/blob/master/Array/Medium/trapping_water.py) <br/>
-&emsp;&emsp;&emsp;   Time to solve &emsp;&emsp; - 35mins <br/>
+&emsp;&emsp;&emsp;   Time to solve &emsp;&emsp; - 35mins <br/> 
 
 Day 7(7/10/2020)  String/Easy
 &emsp;&emsp;&emsp;   Problem &emsp;&emsp;&emsp;&emsp; - [Reverse the vowels](https://github.com/pavi-ninjaac/leetcode/blob/master/String/Easy/ReverseVowels_inword.py) <br/>
