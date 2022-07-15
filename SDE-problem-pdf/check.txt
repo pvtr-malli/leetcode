@@ -1,0 +1,98 @@
+\qecho 'SELECT MIN(time_stamp), NOW() - MIN(time_stamp) AS age FROM traffic.stats;'
+SELECT MIN(time_stamp), NOW() - MIN(time_stamp) AS age FROM traffic.stats;
+
+--\qecho 'SELECT SUM(disk_space_used_mb)/1024 AS disk_space_used_gb FROM disk_storage WHERE storage_status = 'Active' AND storage_usage = 'DATA,TEMP';'
+--SELECT SUM(disk_space_used_mb)/1024 AS disk_space_used_gb FROM disk_storage WHERE storage_status = 'Active' AND storage_usage = 'DATA,TEMP';
+
+\qecho 'SELECT to_char(SUM(disk_space_used_mb)/1024,'999999.99') AS disk_space_used_gb, to_char(SUM(disk_space_free_mb)/1024,'999999.99') AS disk_space_free_gb, AVG(REGEXP_REPLACE(disk_space_Free_percent, '\D')) AS percentage_free, node_name, storage_usage FROM disk_storage WHERE storage_status = 'Active' GROUP BY 4,5 ORDER BY 5, 4;'
+SELECT to_char(SUM(disk_space_used_mb)/1024,'999999.99') AS disk_space_used_gb, to_char(SUM(disk_space_free_mb)/1024,'999999.99') AS disk_space_free_gb, AVG(REGEXP_REPLACE(disk_space_Free_percent, '\D')) AS percentage_free, node_name, storage_usage FROM disk_storage WHERE storage_status = 'Active' GROUP BY 4,5 ORDER BY 5, 4;
+
+--SELECT get_compliance_status();
+
+\qecho 'SELECT (anchor_table_schema||'.'||anchor_table_name||'.'||anchor_table_column_name) AS column, SUM(ros_used_bytes) ros_used_bytes FROM column_storage GROUP BY anchor_table_schema, anchor_table_name, anchor_table_column_name ORDER BY 2 DESC LIMIT 20;'
+SELECT (anchor_table_schema||'.'||anchor_table_name||'.'||anchor_table_column_name) AS column, SUM(ros_used_bytes) ros_used_bytes FROM column_storage GROUP BY anchor_table_schema, anchor_table_name, anchor_table_column_name ORDER BY 2 DESC LIMIT 20;
+ 
+\qecho 'SELECT (anchor_table_schema||'.'||anchor_table_name) AS table, SUM(ros_used_bytes) AS bytes, SUM(ros_row_count) AS rows,to_char(SUM(ros_used_bytes)::float/SUM(ros_row_count),'999999.99') AS bytes_row FROM projection_storage GROUP BY anchor_table_schema, anchor_table_name ORDER BY bytes DESC, anchor_table_schema, anchor_table_name limit 20;'
+SELECT (anchor_table_schema||'.'||anchor_table_name) AS table, SUM(ros_used_bytes) AS bytes, SUM(ros_row_count) AS rows,to_char(SUM(ros_used_bytes)::float/SUM(ros_row_count),'999999.99') AS bytes_row FROM projection_storage GROUP BY anchor_table_schema, anchor_table_name ORDER BY bytes DESC, anchor_table_schema, anchor_table_name limit 20;
+
+\qecho 'table_schema, substr(projection_name,1,length(projection_name)) AS table_name, partition_key, SUM(ros_size_bytes) AS ros_size_bytes, round(SUM(ros_size_bytes)/1024^2)::int AS ros_size_MiB, round(SUM(ros_size_bytes)/1024^3)::int AS ros_size_GiB, SUM(ros_row_count) AS ros_row_count FROM partitions GROUP BY table_schema, table_name, partition_key ORDER BY partition_key, table_schema, table_name;'
+SELECT table_schema, substr(projection_name,1,length(projection_name)) AS table_name, partition_key, SUM(ros_size_bytes) AS ros_size_bytes, round(SUM(ros_size_bytes)/1024^2)::int AS ros_size_MiB, round(SUM(ros_size_bytes)/1024^3)::int AS ros_size_GiB, SUM(ros_row_count) AS ros_row_count FROM partitions GROUP BY table_schema, table_name, partition_key ORDER BY partition_key, table_schema, table_name;
+
+--\qecho 'SELECT date_trunc('day', time_stamp)::date AS time_interval, count(distinct subscriber) AS subscribers, count(*) AS records, round(SUM(bytes_in)/1024^3)::int AS GiB_in, round(SUM(bytes_out)/1024^3)::int AS GiB_out, SUM(connections_in) AS conns_in, SUM(connections_out) AS conns_out FROM traffic.stats WHERE time_stamp >= :startdate AND time_stamp < :enddate GROUP BY time_interval ORDER BY time_interval DESC;'
+--SELECT date_trunc('day', time_stamp)::date AS time_interval, count(distinct subscriber) AS subscribers, count(*) AS records, round(SUM(bytes_in)/1024^3)::int AS GiB_in, round(SUM(bytes_out)/1024^3)::int AS GiB_out, SUM(connections_in) AS conns_in, SUM(connections_out) AS conns_out FROM traffic.stats WHERE time_stamp >= :startdate AND time_stamp < :enddate GROUP BY time_interval ORDER BY time_interval DESC;
+
+--\qecho 'SELECT floor(records/1000)*1000 AS bucket_min, count(*) FROM ( SELECT subscriber, count(*) AS records FROM traffic.stats WHERE time_stamp >= :startdate AND time_stamp < :enddate GROUP BY subscriber ORDER BY records DESC ) t1 GROUP BY bucket_min ORDER BY bucket_min;'
+--SELECT floor(records/1000)*1000 AS bucket_min, count(*) FROM ( SELECT subscriber, count(*) AS records FROM traffic.stats WHERE time_stamp >= :startdate AND time_stamp < :enddate GROUP BY subscriber ORDER BY records DESC ) t1 GROUP BY bucket_min ORDER BY bucket_min;
+ 
+\qecho 'SELECT node_name,projection_schema,projection_name,ros_count FROM projection_storage WHERE projection_schema IN ('score','traffic') ORDER BY ros_count DESC LIMIT 20;'
+SELECT node_name,projection_schema,projection_name,ros_count FROM projection_storage WHERE projection_schema IN ('score','traffic') ORDER BY ros_count DESC LIMIT 20;
+
+--\qecho 'SELECT table_schema, partition_key, SUM(ros_size_bytes) AS ros_size_bytes, SUM(ros_row_count) AS ros_row_count FROM partitions GROUP BY table_schema, partition_key ORDER BY partition_key, table_schema;'
+--SELECT table_schema, partition_key, SUM(ros_size_bytes) AS ros_size_bytes, SUM(ros_row_count) AS ros_row_count FROM partitions GROUP BY table_schema, partition_key ORDER BY partition_key, table_schema;
+
+\qecho 'Score Hourly Rollup time FROM query_requests'
+SELECT max((request_duration_ms/1000)::INT) AS max_secs, avg((request_duration_ms/1000)::INT) AS avg_secs FROM query_requests WHERE request ilike 'INSERT INTO score.stats_hourly%score.stats %';
+
+\qecho 'Score Hourly Rollup times FROM query_requests'
+SELECT start_timestamp, end_timestamp, (request_duration_ms/1000)::INT AS secs FROM query_requests WHERE request ilike 'INSERT INTO score.stats_hourly%score.stats %';
+
+
+\qecho '5min traffic rollup time Taskrunner'
+SELECT AVG(b.s), MAX(b.s) FROM (SELECT a.lower, SUM(a.duration) AS s FROM (SELECT p1.param_value AS lower, duration FROM taskrunner.task_parameter p1 JOIN taskrunner.task_history using(task_uuid) JOIN taskrunner.task_parameter p2 using(task_uuid) JOIN taskrunner.task t using(task_uuid) WHERE t.task_name ILIKE '%Traffic%' AND p1.param_name='lower' AND p2.param_name='interval_type' AND p2.param_value='5min' AND status <> 'RUNNING' AND t.created >= :startdate AND t.created < :enddate) a GROUP BY a.lower) b WHERE s > '00:00:04';
+
+\qecho 'Traffic Hourly Rollup time Taskrunner'
+SELECT AVG(b.s), MAX(b.s) FROM (SELECT a.lower, SUM(a.duration) AS s FROM (SELECT p1.param_value AS lower, duration FROM taskrunner.task_parameter p1 JOIN taskrunner.task_history using(task_uuid) JOIN taskrunner.task_parameter p2 using(task_uuid) JOIN taskrunner.task t using(task_uuid) WHERE t.task_name ILIKE '%Traffic%' AND t.task_name not ILIKE '%TrafficStats%' AND p1.param_name='lower' AND p2.param_name='interval_type' AND p2.param_value='hourly' AND status <> 'RUNNING' AND t.created >= :startdate AND t.created < :enddate) a GROUP BY a.lower) b WHERE s > '00:00:04';
+
+\qecho 'Traffic Daily Rollup time Taskrunner'
+SELECT AVG(b.s), MAX(b.s) FROM (SELECT a.lower, SUM(a.duration) AS s FROM (SELECT p1.param_value AS lower, duration FROM taskrunner.task_parameter p1 JOIN taskrunner.task_history using(task_uuid) JOIN taskrunner.task_parameter p2 using(task_uuid) JOIN taskrunner.task t using(task_uuid) WHERE t.task_name ILIKE '%Traffic%' AND t.task_name not ILIKE '%TrafficStats%' AND p1.param_name='lower' AND p2.param_name='interval_type' AND p2.param_value='daily' AND status <> 'RUNNING' AND t.created >= :startdate AND t.created < :enddate) a GROUP BY a.lower) b WHERE s > '00:00:04';
+
+\qecho 'Score Hourly Rollup time Taskrunner'
+SELECT AVG(b.s), MAX(b.s) FROM (SELECT a.lower, SUM(a.duration) AS s FROM (SELECT p1.param_value AS lower, duration FROM taskrunner.task_parameter p1 JOIN taskrunner.task_history using(task_uuid) JOIN taskrunner.task_parameter p2 using(task_uuid) JOIN taskrunner.task t using(task_uuid) WHERE t.task_name ILIKE '%Score%' AND p1.param_name='lower' AND p2.param_name='interval_type' AND p2.param_value='hourly' AND status <> 'RUNNING' AND t.created >= :startdate AND t.created < :enddate) a GROUP BY a.lower) b WHERE s > '00:00:04';
+
+\qecho 'Score 5min Rollup time Taskrunner'
+SELECT AVG(b.s), MAX(b.s) FROM (SELECT a.lower, SUM(a.duration) AS s FROM (SELECT p1.param_value AS lower, duration FROM taskrunner.task_parameter p1 JOIN taskrunner.task_history using(task_uuid) JOIN taskrunner.task_parameter p2 using(task_uuid) JOIN taskrunner.task t using(task_uuid) WHERE t.task_name ILIKE '%Score%' AND p1.param_name='lower' AND p2.param_name='interval_type' AND p2.param_value='5min' AND status <> 'RUNNING' AND t.created >= :startdate AND t.created < :enddate) a GROUP BY a.lower) b WHERE s > '00:00:04';
+
+\qecho 'Traffic flat Hourly Rollup time'
+SELECT AVG(b.s), MAX(b.s) FROM (SELECT a.lower, SUM(a.duration) AS s FROM (SELECT p1.param_value AS lower, duration FROM taskrunner.task_parameter p1 JOIN taskrunner.task_history using(task_uuid) JOIN taskrunner.task_parameter p2 using(task_uuid) JOIN taskrunner.task t using(task_uuid) WHERE t.task_name ILIKE '%TrafficStatsHourly%' AND p1.param_name='lower' AND p2.param_name='interval_type' AND p2.param_value='hourly' AND status <> 'RUNNING' AND t.created >= :startdate AND t.created < :enddate) a GROUP BY a.lower) b WHERE s > '00:00:04';
+
+\qecho 'Traffic flat Daily Rollup time'
+SELECT AVG(b.s), MAX(b.s) FROM (SELECT a.lower, SUM(a.duration) AS s FROM (SELECT p1.param_value AS lower, duration FROM taskrunner.task_parameter p1 JOIN taskrunner.task_history using(task_uuid) JOIN taskrunner.task_parameter p2 using(task_uuid) JOIN taskrunner.task t using(task_uuid) WHERE t.task_name ILIKE '%TrafficStatsDaily%'AND p1.param_name='lower' AND p2.param_name='interval_type' AND p2.param_value='daily' AND status <> 'RUNNING' AND t.created >= :startdate AND t.created < :enddate) a GROUP BY a.lower) b WHERE s > '00:00:04';
+
+\qecho 'Failed drop partitions Taskrunner'
+SELECT MAX(s.time), count(*) FROM dc_transaction_starts s JOIN dc_transaction_ends e using (node_name, session_id, transaction_id) WHERE s.user_name = 'dbmaintain' AND not is_committed AND description like '%drop_partition on table%' AND s.time >= :startdate AND s.time < :enddate;
+
+\qecho 'CPU Usage. AVG and MAX of average_cpu_usage_percent'
+SELECT node_name, AVG(average_cpu_usage_percent), MAX(average_cpu_usage_percent) FROM cpu_usage WHERE start_time >= :startdate AND start_time < :enddate GROUP BY 1;
+
+\qecho 'Memory usage. AVG and MAX of average_memory_usage_percent'
+SELECT node_name, AVG(average_memory_usage_percent), MAX(average_memory_usage_percent) FROM memory_usage WHERE start_time >= :startdate AND start_time < :enddate GROUP BY 1;
+
+\qecho 'I/O usage.  AVG and MAX of read_kbytes_per_sec and written_kbytes_per_sec'
+SELECT node_name, AVG(read_kbytes_per_sec) AS avg_read, MAX(read_kbytes_per_sec) AS max_read, AVG(written_kbytes_per_sec) AS avg_written, MAX(written_kbytes_per_sec) AS max_written FROM io_usage WHERE start_time >= :startdate AND start_time < :enddate GROUP BY 1;
+
+\qecho 'Ingestion times score'
+SELECT node_name, trunc(query_start::timestamptz, 'hh') AS hour, count(*) AS num_copies, round(AVG(query_duration_us)/1000000)::int AS avg_query_duration_secs, round(AVG(processed_row_count))::int AS avg_row_count FROM query_profiles WHERE  query ILIKE 'COPY score.stats%' AND  query_start >= :startdate AND query_start < :enddate GROUP BY 1,2 ORDER BY 2 DESC, 1;
+
+\qecho 'Summary for rows in score.stats_hourly'
+SELECT DATE(time_stamp) as date, time_stamp, COUNT(*), (COUNT(*)/COUNT(DISTINCT subscriber))::INT AS rows_per_sub FROM score.stats_hourly WHERE time_stamp >= :startdate AND time_stamp < :enddate GROUP BY DATE(time_stamp), time_stamp ORDER BY 1,2;
+
+\qecho 'Summary for rows in traffic.stats_hourly'
+SELECT DATE(time_stamp) as date, time_stamp, COUNT(*), (COUNT(*)/COUNT(DISTINCT subscriber))::INT AS rows_per_sub FROM traffic.stats_hourly WHERE time_stamp >= :startdate AND time_stamp < :enddate GROUP BY DATE(time_stamp), time_stamp ORDER BY 1,2;
+
+\qecho 'Summary for rows in traffic.stats_daily'
+SELECT time_stamp, COUNT(*), (COUNT(*)/COUNT(DISTINCT subscriber))::INT AS rows_per_sub FROM traffic.stats_daily WHERE time_stamp >= :startdate AND time_stamp < :enddate GROUP BY 1 ORDER BY 1;
+
+\qecho 'Summary for rows in raw score.stats'
+SELECT TRUNC(time_stamp, 'hh') AS HOUR, DATE_TRUNC('hour', time_stamp) AS  hour, COUNT(*), (COUNT(*)/COUNT(DISTINCT subscriber))::INT AS rows_per_sub from score.stats WHERE time_stamp >= :startdate AND time_stamp < :enddate GROUP BY 1,2 ORDER BY 1,2;
+
+\qecho 'Summary for rows in raw traffic.stats'
+SELECT time_stamp, COUNT(*), (COUNT(*)/COUNT(DISTINCT subscriber))::INT AS rows_per_sub from traffic.stats WHERE time_stamp >= :startdate AND time_stamp < :enddate GROUP BY 1 ORDER BY 1;
+
+\qecho 'Bucket CPU usage'
+SELECT node_name, cpu_bucket, ((SUM(count)/SUM(SUM(count)) OVER(partition by node_name)) * 100)::INT as percentage FROM (SELECT node_name, ((average_cpu_usage_percent / 10)::INT * 10) AS cpu_bucket, COUNT(*) FROM cpu_usage GROUP BY 1,2) as tbl GROUP BY 1,2 ORDER BY 1,2;
+
+\qecho 'Rejected rollups'
+SELECT cast(to_char(time,'YYYYMMDD') AS  integer) AS day_id, count(*) AS COPY_FAILED FROM dc_requests_completed WHERE user_name ='datacore' AND command_tag ='COPY' AND success ='f' AND schema_name IN ('traffic','score') AND table_name ='stats' GROUP BY 1 ORDER BY 1;
+
+\qecho 'Longest Running Mergeouts'
+SELECT s.node_name, s.schema_name, s.projection_name, s.container_count, s.total_size_in_bytes, DATEDIFF(MINUTE,s.time,c.time) Mergeout_time_minutes, TRUNC(s.total_size_in_bytes/1000000000/NULLIFZERO(DATEDIFF(MINUTE,s.time,c.time)),3)::NUMERIC(5,3)||' Gb/Mn' Mergeout_Throughput,  case when c.plan_type = 'Replay Delete' then true else false end include_replay_delete, projcols number_of_columns, sortkey columns_in_sort_order, col.row_length  FROM dc_tuple_mover_events s JOIN dc_tuple_mover_events c ON s.node_name=c.node_name AND s.projection_oid = c.projection_oid AND s.transaction_id = c.transaction_id AND s.total_size_in_bytes = c.total_size_in_bytes AND s.session_id = c.session_id AND s.operation = 'Mergeout' AND c.operation = 'Mergeout' AND s.event = 'Start' AND c.event = 'Complete' JOIN vs_projections p ON p.oid = s.projection_oid JOIN (select t_oid, sum(attlen) row_length from vs_columns group by 1) col ON t_oid = p.anchortable  ORDER BY 6 desc LIMIT 10;

@@ -1,0 +1,2 @@
+Day<n>_<name-of-the-concept>
+    c<n>_name-of-the-sum.py (if n is 0 means that are the extra sums i tires they are not in cheet sheet)
