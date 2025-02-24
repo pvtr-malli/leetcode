@@ -1,68 +1,63 @@
-# git commit format
->> git commit -m "Nov-17-2024: 2 poniters(2-easy)"
+10 in each topic is the target now.
 
 
-date: title_of_the_model(how_many_sums-level)
+►Sliding Window (12 Problems) - 2 more
+https://lnkd.in/gbMnsS8i
 
-# leetcode
+►Two Pointers (30 Problems) - 10 sums
+https://lnkd.in/gZeG-PXb
 
-Day 1 (30/09/2020) - Array/Easy <br/>
-&emsp;&emsp;&emsp;   Problem &emsp;&emsp;&emsp;&emsp; - [Remove Element from Array](https://github.com/pavi-ninjaac/leetcode/blob/master/Array/Easy/RemoveElement.py) <br/>
-&emsp;&emsp;&emsp;   Time to solve &emsp;&emsp; - 20mins <br/>
+►Binary Search (41 Problems) - DONE
+https://lnkd.in/gjykw7x2
 
-Day 2 (01/10/2020) - Array/Easy <br/>
-&emsp;&emsp;&emsp;   Problem &emsp;&emsp;&emsp;&emsp; - [Search insert position](https://github.com/pavi-ninjaac/leetcode/blob/master/Array/Easy/Search_insert_position.py) <br/>
-&emsp;&emsp;&emsp;   Time to solve &emsp;&emsp; - 20mins <br/>
+►Backtracking (17 Problems) - 10 sums
+https://lnkd.in/gersVnrz
+
+►Hash Table and Map (46 Problems) - 10 sums target
+https://lnkd.in/gPsUh6w5
+
+►Bit Manipulation (30 Problems) and Math - 28 sums target.
+https://lnkd.in/gtZZc6tR
+
+►Linked List (13 Problems) - 10 sums target
+https://lnkd.in/gT_FhqYa
 
 
-&emsp;&emsp;&emsp;   Problem &emsp;&emsp;&emsp;&emsp; - [Eliminate Dublication](https://github.com/pavi-ninjaac/leetcode/blob/master/Array/Easy/EliminateDublicate.py) <br/>
-&emsp;&emsp;&emsp;   Time to solve &emsp;&emsp; - 20mins <br/>
 
-Day 3 (02/10/2020) - Array/Easy <br/>
-&emsp;&emsp;&emsp;   Problem &emsp;&emsp;&emsp;&emsp; - [Sum even after Queries](https://github.com/pavi-ninjaac/leetcode/blob/master/Array/Easy/Sum_even_after_queries.py) <br/>
-&emsp;&emsp;&emsp;   Time to solve &emsp;&emsp; - 15mins <br/>
+►Trees (Top 26 Problems)
+https://lnkd.in/g5vXWFu3
 
-Day 4 (03/10/2020) - Math/Easy <br/>
-&emsp;&emsp;&emsp;   Problem &emsp;&emsp;&emsp;&emsp; - [Binary Add](https://github.com/pavi-ninjaac/leetcode/blob/master/Math/Easy/Binary_add.py) <br/>
-&emsp;&emsp;&emsp;   Time to solve &emsp;&emsp; - 10mins <br/>
+►Monotonic Queue and Priority Queue (13 Problems)
+https://lnkd.in/gzrcfZtj
 
-&emsp;&emsp;&emsp;   Problem &emsp;&emsp;&emsp;&emsp; - [Happy NUmbers](https://github.com/pavi-ninjaac/leetcode/blob/master/Math/Easy/Happy_numbers.py) <br/>
-&emsp;&emsp;&emsp;   Time to solve &emsp;&emsp; - 30mins <br/>
 
-&emsp;&emsp;&emsp;   Problem &emsp;&emsp;&emsp;&emsp; - [Reverse Interger](https://github.com/pavi-ninjaac/leetcode/blob/master/Math/Easy/Reverse_integer.py) <br/>
-&emsp;&emsp;&emsp;   Time to solve &emsp;&emsp; - 20mins <br/>
 
-&emsp;&emsp;&emsp;   Problem &emsp;&emsp;&emsp;&emsp; - [Roman To Int](https://github.com/pavi-ninjaac/leetcode/blob/master/Math/Easy/RomanToInt.py) <br/>
-&emsp;&emsp;&emsp;   Time to solve &emsp;&emsp; - 35mins <br/>
 
-&emsp;&emsp;&emsp;   Problem &emsp;&emsp;&emsp;&emsp; - [Add digits until one digit](https://github.com/pavi-ninjaac/leetcode/blob/master/Math/Easy/add_digits_until_oneDifit.py) <br/>
-&emsp;&emsp;&emsp;   Time to solve &emsp;&emsp; - 35mins <br/>
+►Graphs (32 Problems) - 10 sums
+https://lnkd.in/gcHRz5-p
+►Bridges and Articulation Points (4 Problems)
+https://lnkd.in/gRpJ6qxN
+►Dijkstra Algorithm (13 Problems)
+https://lnkd.in/gRsxH7Th
+►Bellman Ford Algorithm (5 Problems)
+https://lnkd.in/gBN54_mc
+►Floyd Warshall Algorithm (6 Problems)
+https://lnkd.in/g6zvRYbb
+►Topological Sort (4 Problems)
+https://lnkd.in/gBaaZCbM
+►Disjoint Set Union (Union Find) (25 Problems)
+https://lnkd.in/gQx74mJc
 
-Day 5 (4/10/2020)
-&emsp;&emsp;&emsp;   Problem &emsp;&emsp;&emsp;&emsp; - [Container with most water](https://github.com/pavi-ninjaac/leetcode/blob/master/Array/Medium/Container_water.py) <br/>
-&emsp;&emsp;&emsp;   Time to solve &emsp;&emsp; - 35mins <br/>
 
-Day 6(5/10/2020)
-&emsp;&emsp;&emsp;   Problem &emsp;&emsp;&emsp;&emsp; - [Trapping water](https://github.com/pavi-ninjaac/leetcode/blob/master/Array/Medium/trapping_water.py) <br/>
-&emsp;&emsp;&emsp;   Time to solve &emsp;&emsp; - 35mins <br/>
 
-Day 7(7/10/2020)  String/Easy
-&emsp;&emsp;&emsp;   Problem &emsp;&emsp;&emsp;&emsp; - [Reverse the vowels](https://github.com/pavi-ninjaac/leetcode/blob/master/String/Easy/ReverseVowels_inword.py) <br/>
-&emsp;&emsp;&emsp;   Time to solve &emsp;&emsp; - 20mins <br/>
+►Greedy Algorithms (34 Problems)
+https://lnkd.in/gianQPuw
 
-&emsp;&emsp;&emsp;   Problem &emsp;&emsp;&emsp;&emsp; - [balance string group](https://github.com/pavi-ninjaac/leetcode/blob/master/String/Easy/Split_string_balaced_By_LR.py) <br/>
-&emsp;&emsp;&emsp;   Time to solve &emsp;&emsp; - 20mins <br/>
+► Dynamic Programming (45 Problems)
+https://lnkd.in/gHYgRDSZ
 
-Day 8(10/10/2020)  String/Easy <br/>
-&emsp;&emsp;&emsp;   Problem &emsp;&emsp;&emsp;&emsp; - [Firsr Unique charecter](https://github.com/pavi-ninjaac/leetcode/blob/master/String/Easy/firstUniqueString.py) <br/>
-&emsp;&emsp;&emsp;   Time to solve &emsp;&emsp; - 10mins <br/>
+►Heaps (22 Problems)
+https://lnkd.in/gNsjGw8p
 
-&emsp;&emsp;&emsp;   Problem &emsp;&emsp;&emsp;&emsp; - [longest Palindrom](https://github.com/pavi-ninjaac/leetcode/blob/master/String/Easy/longestPalindrom.py) <br/>
-&emsp;&emsp;&emsp;   Time to solve &emsp;&emsp; - 10mins <br/>
-
-Day 9(11/10/2020)  String/Medium <br/>
-&emsp;&emsp;&emsp;   Problem &emsp;&emsp;&emsp;&emsp; - [Longest Substring](https://github.com/pavi-ninjaac/leetcode/blob/master/String/Medium/longestSubstring.py) <br/>
-&emsp;&emsp;&emsp;   Time to solve &emsp;&emsp; - 25mins <br/>
-Day 9(11/10/2020)  Array/Easy <br/>
-&emsp;&emsp;&emsp;   Problem &emsp;&emsp;&emsp;&emsp; - [Two Sum](https://github.com/pavi-ninjaac/leetcode/blob/master/Array/Easy/TwoSum.py) <br/>
-&emsp;&emsp;&emsp;   Time to solve &emsp;&emsp; - 15mins <br/>
+►Trie (8 Problems)
+https://lnkd.in/gDqU7Ypy

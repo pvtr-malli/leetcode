@@ -1,0 +1,7 @@
+# BFS for matrix:
+1 | initialize the queue
+2 | start the while loop until the queue is empty.
+3 | explore all the four direction for each queue element.
+4 | do calculation and repeat
+
+# 2 | check the sum 6 bipartite: graph BFS
