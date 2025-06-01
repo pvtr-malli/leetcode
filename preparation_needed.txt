@@ -1,0 +1,20 @@
+- OOPs
+- basic language questions like, which is immutable like that
+- implement basic hashmap like that, so make sure you know how to implement them
+- spend 3 months in coding, checkout needcode , interviewbit
+- buy leedcode premium for 2 months and use it, get the google problem list and solve them based on the frequency.
+
+- ask questions to make the problem very clear, explain while coding, **go slowwwwww** - you suck here.
+- edge case imp, ind is important, should be really readble 
+
+- only 45 mins coding.
+- for google: prepare linked-list and DP most. for amazon: binary tree 
+- explain the brute force and ask them should I solve it or jump to better one ?
+  because they wont know Ik the solution or not, so they dont stp me in mid
+- if you have extra time after solving the problems, then try to think out load how to solve the same problem using diff patterns 
+  or some thinking so better solution like that
+
+- give proper time to prepare for the ML concepts also.
+- collect ML questions and solve it regularly. daily 2 like that in office time.
+- solve re regulary.
+- solve pandas and sql -- bi-daily.
