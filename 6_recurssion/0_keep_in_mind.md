@@ -36,3 +36,5 @@ def combinationSum3_rec(self, cur_arr, k, target, start_ind):
             self.combinationSum3_rec(cur_arr, k, target-ii, ii + 1)
             cur_arr.pop()
 ```
+
+- 2 | NO THINKING, if asking for without duplicate, then sort, call for loop and skip i!= ind and arr[i] == arr[i-1]
