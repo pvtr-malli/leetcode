@@ -38,3 +38,5 @@ class Solution:
 - decrese until the condition is not voilating.
 - keep the tracker properly.
 ```
+
+- Sliding window fails when we have negative numbers inside the array - prefer something else at that time.
