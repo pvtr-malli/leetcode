@@ -1,0 +1,3 @@
+- 1 | proper and slow decision of null checking very important.
+- Create a dummy new-node to track, if you have to return the head.
+- you are forgetting to move the pointer in the while loop. -- so bad mistake.
