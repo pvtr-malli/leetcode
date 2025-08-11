@@ -20,3 +20,6 @@ d[(1, (1,2))] = 1  # has like this, list can't be a key so keep it as a tuple.
 subset sum quals k(0/1 knapsoack) == coin change (unbounded knapsoack)
 
 - subset vs subarray difference INPORTANT see :0_560._subarray_sum_equals_k_medium.ipynb
+
+## 6_ dtrings
+- start the recurssion from the back. So the tabulaiton we can do the for loop for 1 - > n+1
