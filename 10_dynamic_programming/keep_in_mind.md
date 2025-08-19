@@ -1,5 +1,15 @@
 # The problems:
 
+# 1 _ array:
+- Subarray – a continuous part of the array.
+    - Ex: Array = [1,2,3,4,5]
+    - Subarrays: [1,2,3], [2,3,4,5], [4]
+- Subsequence – elements taken in order, not necessarily contiguous.
+    - Ex: Array = [1,2,3,4,5]
+    - Subsequences: [1,3,5], [2,4], [1,2,3,4,5]
+- Subset – any combination of elements, order doesn’t matter.
+    - Ex: Array = [1,2,3]
+    - Subsets: [], [1], [2,3], [1,2,3]
 
 ## 2 _ Grid
 - Always spoling the out of index thingy in grid related sums. be very careful. write it down not an issue.
@@ -23,3 +33,11 @@ subset sum quals k(0/1 knapsoack) == coin change (unbounded knapsoack)
 
 ## 6_ dtrings
 - start the recurssion from the back. So the tabulaiton we can do the for loop for 1 - > n+1
+- s[0 to i-1] means in my world, when i = 3. we will consider 0 to (3-1) indexes. which is 0,1 and 2.
+
+
+
+
+# Common:
+- In tabulation: The last ans returning thing is:
+- return dp[0][n-1] # NOTE: this is the numbers you call the plain recursion with.
