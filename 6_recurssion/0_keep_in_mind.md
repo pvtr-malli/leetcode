@@ -38,3 +38,4 @@ def combinationSum3_rec(self, cur_arr, k, target, start_ind):
 ```
 
 - 2 | NO THINKING, if asking for without duplicate, then sort, call for loop and skip i!= ind and arr[i] == arr[i-1]
+- all the duplicate sums you have to do the for loop for for ii in range(ind, n)
