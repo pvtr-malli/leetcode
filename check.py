@@ -1,23 +1,49 @@
-from collections import defaultdict
-
 class Solution:
-    def countGood(self, nums: list[int], k: int) -> int:
-        freq = {}
-        left = 0
-        pair_count = 0
-        good_subarrays = 0
+    def median(self, mat):
+        rows = len(mat)
+        cols = len(mat[0])
+        median_index = (rows * cols) // 2 
+        number_less_than_medin = median_index 
 
-        for right in range(len(nums)):
-            pair_count += freq[nums[right]]
-            freq[nums[right]] += 1
+        def have_ele_median_less_than_mid(mid):
+            # go over each row and do a bin-search and find how many elements < mid is there.
+            count = 0
+            for row in range(rows):
+                l = 0
+                h = cols - 1
+                ans = h
+                while l <= h:
+                    m = (l+h)//2
+                    if mat[row][m] < mid:
+                        ans = m 
+                        # we are looking for hte last true - got right and search more.
+                        l = m + 1
+                    else:
+                        h = m - 1
+                count += (ans + 1) # if the index is 2, than there is 3 elements in the row < k.
 
-            while pair_count >= k:
-                good_subarrays += len(nums) - right
-                freq[nums[left]] -= 1
-                pair_count -= freq[nums[left]]
-                left += 1
+            return count 
+        
+        low = min(row[0] for row in mat)         # smallest element (first of each row)
+        high = max(row[-1] for row in mat)
+        ans = high
 
-        return good_subarrays
+        while low<=high:
+            mid = (low + high) // 2
 
+            num_count = have_ele_median_less_than_mid(mid)
+            if num_count == number_less_than_medin:
+                return mid
+            
+            elif num_count > number_less_than_medin:
+                high = mid - 1
+            else:
+                low = mid + 1
+            
 
-print(Solution().countGood(nums = [3,1,4,3,2,2,4], k = 2))
+        return ans
+    
+
+Solution().median([[1, 3, 5], 
+[2, 6, 9], 
+[3, 6, 9]])
