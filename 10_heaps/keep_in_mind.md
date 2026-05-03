@@ -1,0 +1,5 @@
+- NO thinking:
+    - If asking for kth largest element -> take **min** heap and pop the extra and retunr h[0]
+    - If asking for kth smallest element-> take **max** heap and pop the extra and retunr h[0]
+    - largest == min heap
+    - smallest == max heap
